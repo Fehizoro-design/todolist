@@ -59,8 +59,6 @@ I'm always interested in discussing new projects, creative ideas, or opportuniti
 ## 🎯 Fun Facts
 
 - ⚡ I love solving complex problems with simple, elegant solutions
-- 🎮 [Add your interests/hobbies]
-- 🌍 [Add other fun facts about yourself]
 
 ---
 
