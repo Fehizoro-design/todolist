@@ -49,10 +49,7 @@ A task management application built with Laravel and Blade templating.
 
 I'm always interested in discussing new projects, creative ideas, or opportunities to collaborate. Feel free to reach out!
 
-- 📧 **Email:** [Your Email]
-- 🔗 **LinkedIn:** [Your LinkedIn]
-- 🐦 **Twitter:** [Your Twitter Handle]
-- 🌐 **Portfolio:** [Your Portfolio Website]
+- 📧 **Email:** ratsimbazafyt7@gmail.com
 
 ---
 
