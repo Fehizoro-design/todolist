@@ -40,9 +40,23 @@
 
         {{-- Profil Desktop (Masqué sur mobile car il passe dans le header) --}}
         <flux:dropdown position="top" align="start" class="max-lg:hidden">
-            <flux:sidebar.profile avatar="https://fluxui.dev/img/demo/user.png" name="Olivia Martin" />
+            <flux:sidebar.profile
+                avatar="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=2563eb&color=fff"
+                name="{{ auth()->user()->name }}" />
             <flux:menu>
-                <flux:menu.item icon="arrow-right-start-on-rectangle">Déconnexion</flux:menu.item>
+                <div class="px-4 py-2 text-sm text-zinc-500 border-b border-zinc-100 dark:border-zinc-800">
+                    Connecté en tant que <br>
+                    <span class="font-bold text-zinc-900 dark:text-white">{{ auth()->user()->email }}</span>
+                </div>
+
+                {{-- Formulaire de déconnexion standard Laravel --}}
+                <form method="POST" action="{{ route('logout') }}" class="w-full">
+                    @csrf
+                    <flux:menu.item icon="arrow-right-start-on-rectangle"
+                        onclick="event.preventDefault(); this.closest('form').submit();">
+                        Déconnexion
+                    </flux:menu.item>
+                </form>
             </flux:menu>
         </flux:dropdown>
     </flux:sidebar>
@@ -65,9 +79,24 @@
             {{-- Profil Mobile --}}
             <div class="flex-1 flex justify-end lg:hidden">
                 <flux:dropdown position="top" align="end">
-                    <flux:profile avatar="https://fluxui.dev/img/demo/user.png" />
+                    {{-- Avatar dynamique basé sur le nom de l'utilisateur connecté --}}
+                    <flux:profile
+                        avatar="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=2563eb&color=fff" />
                     <flux:menu>
-                        <flux:menu.item icon="arrow-right-start-on-rectangle">Déconnexion</flux:menu.item>
+                        <div class="px-4 py-2 text-sm text-zinc-500 border-b border-zinc-100 dark:border-zinc-800">
+                            Connecté en tant que <br>
+                            <span class="font-bold text-zinc-900 dark:text-white">{{ auth()->user()->name }}</span> <br>
+                            <span class="font-bold text-zinc-900 dark:text-white">{{ auth()->user()->email }}</span>
+                        </div>
+
+                        {{-- Formulaire de déconnexion standard Laravel --}}
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
+                            @csrf
+                            <flux:menu.item icon="arrow-right-start-on-rectangle"
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                Déconnexion
+                            </flux:menu.item>
+                        </form>
                     </flux:menu>
                 </flux:dropdown>
             </div>
