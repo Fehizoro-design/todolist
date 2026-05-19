@@ -12,6 +12,7 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/tasks/{task}/edit', 'pages::task-edit')->name('tasks.edit');
     Route::livewire('/tasks/{task}', 'pages::task-view')->name('tasks.show');
     Route::livewire('/calendar', 'pages::calendar')->name('calendar');
+    Route::livewire('/settings', 'pages::settings')->name('settings');
 });
 
 Route::post('/logout', function (\Illuminate\Http\Request $request) {
@@ -20,4 +21,3 @@ Route::post('/logout', function (\Illuminate\Http\Request $request) {
     $request->session()->regenerateToken();
     return redirect('/login');
 })->name('logout');
-

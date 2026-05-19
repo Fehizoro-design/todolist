@@ -18,7 +18,7 @@
         class="bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
         <flux:sidebar.header>
             <flux:sidebar.brand href="#" logo="https://fluxui.dev/img/demo/logo.png"
-                logo:dark="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Acme Inc." />
+                logo:dark="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Tache" />
             <flux:sidebar.collapse class="lg:hidden" />
         </flux:sidebar.header>
 
@@ -35,7 +35,8 @@
         <flux:sidebar.spacer />
 
         <flux:sidebar.nav>
-            <flux:sidebar.item icon="cog-6-tooth" href="#">Paramètres</flux:sidebar.item>
+            <flux:sidebar.item icon="cog-6-tooth" href="{{ route('settings') }}" wire:navigate>Paramètres
+            </flux:sidebar.item>
         </flux:sidebar.nav>
 
         {{-- Profil Desktop (Masqué sur mobile car il passe dans le header) --}}

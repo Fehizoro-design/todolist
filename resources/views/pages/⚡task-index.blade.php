@@ -94,8 +94,9 @@ new #[Layout('layouts::app', ['title' => 'Liste des tâches'])] class extends Co
                                         class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:hover:bg-blue-900/40 transition-colors">
                                         Voir
                                     </a>
-                                    <a href="{{ route('tasks.edit', $task->id) }}" wire:navigate
+                                    {{-- <a href="{{ route('tasks.edit', $task->id) }}" wire:navigate
                                         class="text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">Modifier</a>
+                                    --}}
                                     <button @click="$dispatch('confirm-delete', {{ $task->id }})"
                                         class="group inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 dark:hover:text-red-400 transition-all">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,7 +134,7 @@ new #[Layout('layouts::app', ['title' => 'Liste des tâches'])] class extends Co
                 <div class="text-center">
                     <h3 class="text-lg font-bold text-zinc-900 dark:text-white">Supprimer la tâche ?</h3>
                     <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2">
-                        Êtes-vous sûr ? Cette action ne pourra pas être annulée.
+                        Êtes-vous sûr ? Cette action est irreversibile.
                     </p>
                 </div>
 
