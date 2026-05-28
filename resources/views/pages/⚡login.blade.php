@@ -23,7 +23,7 @@ new #[Layout('layouts::guest', ['title' => 'Login'])] class extends Component {
             return redirect()->route('tasks.index');
         }
 
-        $this->addError('email', 'Les identifiants sont incorrects.');
+        $this->addError('email', 'Ce combinaison email/mot de passe est incorrecte.');
     }
 
     // public function render()

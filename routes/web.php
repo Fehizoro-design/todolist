@@ -13,6 +13,7 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/tasks/{task}', 'pages::task-view')->name('tasks.show');
     Route::livewire('/calendar', 'pages::task-calendar')->name('calendar');
     Route::livewire('/settings', 'pages::settings')->name('settings');
+    Route::livewire('/construction', 'pages::construction')->name('construction');
 });
 
 Route::post('/logout', function (\Illuminate\Http\Request $request) {

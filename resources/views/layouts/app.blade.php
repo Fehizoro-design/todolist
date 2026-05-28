@@ -27,8 +27,8 @@
             <flux:sidebar.item icon="calendar" href="{{ route('calendar') }}" wire:navigate>Calendrier
             </flux:sidebar.item>
             <flux:sidebar.group expandable heading="Favoris" class="grid">
-                <flux:sidebar.item href="#">Projets</flux:sidebar.item>
-                <flux:sidebar.item href="#">Archives</flux:sidebar.item>
+                <flux:sidebar.item href="{{ route('construction') }}">Projets</flux:sidebar.item>
+                <flux:sidebar.item href="{{ route('construction') }}">Archives</flux:sidebar.item>
             </flux:sidebar.group>
         </flux:sidebar.nav>
 
