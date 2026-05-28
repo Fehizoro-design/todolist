@@ -105,10 +105,10 @@ new #[Layout('layouts::app', ['title' => 'Calendrier des tâches'])] class exten
                         @foreach($tasks->whereBetween('created_at', [$day['date']->copy()->startOfDay(), $day['date']->copy()->endOfDay()]) as $task)
                                     <a href="{{ route('tasks.show', $task->id) }}" wire:navigate
                                         class="block px-2 py-1 text-[10px] leading-tight rounded-md border 
-                                                                                                                                                                               {{ $task->state
+                                                                                                                                                                                                                                               {{ $task->state
                             ? 'bg-green-50 border-green-100 text-green-700 dark:bg-green-900/20 dark:border-green-800 dark:text-green-400'
                             : 'bg-blue-50 border-blue-100 text-blue-700 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400' }} 
-                                                                                                                                                                               truncate transition-transform hover:scale-105">
+                                                                                                                                                                                                                                               truncate transition-transform hover:scale-105">
                                         {{ $task->title }}
                                     </a>
                         @endforeach
