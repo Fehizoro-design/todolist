@@ -9,12 +9,14 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @fluxAppearance
     @livewireStyles
 </head>
 
 <body class="h-full antialiased bg-white dark:bg-zinc-950">
     {{ $slot }}
     @livewireScripts
+    @fluxScripts
 </body>
 
 </html>
