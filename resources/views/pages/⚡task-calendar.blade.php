@@ -23,19 +23,17 @@ new #[Layout('layouts::app', ['title' => 'Calendrier des tâches'])] class exten
         $this->date = Carbon::parse($this->date)->addMonth();
     }
 
-    public function render()
+    #[\Livewire\Attributes\Computed]
+    public function calendarData()
     {
         $startOfMonth = Carbon::parse($this->date)->startOfMonth();
         $endOfMonth = Carbon::parse($this->date)->endOfMonth();
 
-        // On récupère les tâches du mois en cours
-        $tasks = Task::whereBetween('created_at', [$startOfMonth, $endOfMonth])->get();
-
-        return view('calendar', [
+        return [
             'days' => $this->generateCalendarDays($startOfMonth, $endOfMonth),
             'monthName' => $startOfMonth->translatedFormat('F Y'),
-            'tasks' => $tasks
-        ]);
+            'tasks' => Task::whereBetween('created_at', [$startOfMonth, $endOfMonth])->get()
+        ];
     }
 
     private function generateCalendarDays($start, $end)
@@ -61,7 +59,8 @@ new #[Layout('layouts::app', ['title' => 'Calendrier des tâches'])] class exten
 <div class="max-w-6xl mx-auto pt-6 px-4">
     {{-- Header du Calendrier --}}
     <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl font-bold text-zinc-800 dark:text-white capitalize">{{ $monthName }}</h2>
+        <h2 class="text-2xl font-bold text-zinc-800 dark:text-white capitalize">{{ $this->calendarData['monthName'] }}
+        </h2>
         <div
             class="flex bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden shadow-sm">
             <button wire:click="previousMonth"
@@ -90,7 +89,7 @@ new #[Layout('layouts::app', ['title' => 'Calendrier des tâches'])] class exten
 
         {{-- Jours du mois --}}
         <div class="grid grid-cols-7">
-            @foreach($days as $day)
+            @foreach($this->calendarData['days'] as $day)
                 <div
                     class="min-h-30 border-b border-r border-zinc-100 dark:border-zinc-800 p-2 {{ $day['isCurrentMonth'] ? '' : 'bg-zinc-50/50 dark:bg-zinc-950/20' }}">
                     <div class="flex justify-between items-center mb-2">
@@ -102,13 +101,13 @@ new #[Layout('layouts::app', ['title' => 'Calendrier des tâches'])] class exten
 
                     {{-- Affichage des tâches pour ce jour --}}
                     <div class="space-y-1">
-                        @foreach($tasks->whereBetween('created_at', [$day['date']->copy()->startOfDay(), $day['date']->copy()->endOfDay()]) as $task)
+                        @foreach($this->calendarData['tasks']->whereBetween('created_at', [$day['date']->copy()->startOfDay(), $day['date']->copy()->endOfDay()]) as $task)
                                     <a href="{{ route('tasks.show', $task->id) }}" wire:navigate
                                         class="block px-2 py-1 text-[10px] leading-tight rounded-md border 
-                                                                                                                                                                                                                                               {{ $task->state
+                                                                                                                                                                                               {{ $task->state
                             ? 'bg-green-50 border-green-100 text-green-700 dark:bg-green-900/20 dark:border-green-800 dark:text-green-400'
                             : 'bg-blue-50 border-blue-100 text-blue-700 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400' }} 
-                                                                                                                                                                                                                                               truncate transition-transform hover:scale-105">
+                                                                                                                                                                                               truncate transition-transform hover:scale-105">
                                         {{ $task->title }}
                                     </a>
                         @endforeach
