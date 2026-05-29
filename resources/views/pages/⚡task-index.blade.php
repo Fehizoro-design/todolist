@@ -73,6 +73,9 @@ new #[Layout('layouts::app', ['title' => 'Liste des tâches'])] class extends Co
                                 class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-zinc-400 uppercase tracking-wider">
                                 Statut</th>
                             <th
+                                class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-zinc-400 uppercase tracking-wider">
+                                Date de creation</th>
+                            <th
                                 class="px-6 py-3 text-right text-xs font-semibold text-gray-500 dark:text-zinc-400 uppercase tracking-wider">
                                 Actions</th>
                         </tr>
@@ -88,6 +91,9 @@ new #[Layout('layouts::app', ['title' => 'Liste des tâches'])] class extends Co
                                         class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full {{ $task->state ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' }}">
                                         {{ $task->state ? 'Terminé' : 'En attente' }}
                                     </span>
+                                </td>
+                                <td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-zinc-100">
+                                    {{ $task->created_at->format('d M Y') }}
                                 </td>
                                 <td class="px-6 py-4 text-right space-x-3">
                                     <a href="{{ route('tasks.show', $task->id) }}" wire:navigate
