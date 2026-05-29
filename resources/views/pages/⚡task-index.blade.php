@@ -61,7 +61,7 @@ new #[Layout('layouts::app', ['title' => 'Liste des tâches'])] class extends Co
             <div
                 class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 shadow-sm rounded-xl overflow-hidden transition-colors">
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-zinc-700">
-                    <thead class="bg-gray-50 dark:bg-zinc-800/50">
+                    <thead class="bg-gray-300 dark:bg-zinc-800/50">
                         <tr>
                             <th
                                 class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-zinc-400 uppercase tracking-wider">

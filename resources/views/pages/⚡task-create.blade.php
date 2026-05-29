@@ -49,7 +49,7 @@ new #[Layout('layouts::app', ['title' => 'Créer une tâche'])] class extends Co
                 Enregistrer la tâche
             </flux:button>
 
-            <flux:button wire:navigate href="{{ route('tasks.index') }}" variant="ghost">
+            <flux:button wire:navigate onclick="history.back()" variant="ghost">
                 Annuler
             </flux:button>
         </div>

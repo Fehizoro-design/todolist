@@ -20,7 +20,7 @@ new #[Layout('layouts::guest', ['title' => 'Login'])] class extends Component {
             session()->regenerate();
 
             // Redirection vers les tâches après connexion
-            return redirect()->route('tasks.index');
+            return redirect()->route('calendar');
         }
 
         $this->addError('email', 'Ce combinaison email/mot de passe est incorrecte.');

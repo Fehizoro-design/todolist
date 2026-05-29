@@ -23,10 +23,12 @@
         </flux:sidebar.header>
 
         <flux:sidebar.nav>
-            <flux:sidebar.item icon="home" href="{{ route('tasks.index') }}" wire:navigate>Accueil</flux:sidebar.item>
             <flux:sidebar.item icon="calendar" href="{{ route('calendar') }}" wire:navigate>Calendrier
             </flux:sidebar.item>
-            <flux:sidebar.group expandable heading="Favoris" class="grid">
+            <flux:sidebar.item icon="folder" href="{{ route('tasks.index') }}" wire:navigate>Listes des taches
+            </flux:sidebar.item>
+
+            <flux:sidebar.group expandable heading="Favoris" class="grid" icon="bookmark">
                 <flux:sidebar.item href="{{ route('construction') }}">Projets</flux:sidebar.item>
                 <flux:sidebar.item href="{{ route('construction') }}">Archives</flux:sidebar.item>
             </flux:sidebar.group>

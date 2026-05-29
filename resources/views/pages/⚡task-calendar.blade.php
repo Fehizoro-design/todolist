@@ -125,9 +125,9 @@ new #[Layout('layouts::app', ['title' => 'Calendrier des tâches'])] class exten
     </div>
 
     {{-- Grille du Calendrier --}}
-    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-xl overflow-hidden">
+    <div class="bg-gray-200 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-xl overflow-hidden">
         {{-- Jours de la semaine --}}
-        <div class="grid grid-cols-7 border-b border-zinc-250 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/20">
+        <div class="grid grid-cols-7 border-b border-zinc-250 dark:border-zinc-800 bg-gray-4 dark:bg-zinc-800/20">
             @foreach(['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as $dayName)
                 <div class="py-4 text-center text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">{{ $dayName }}</div>
             @endforeach
@@ -190,7 +190,7 @@ new #[Layout('layouts::app', ['title' => 'Calendrier des tâches'])] class exten
                 <flux:heading size="lg" class="text-zinc-900 dark:text-white">Tâches du {{ $selectedDateString }}</flux:heading>
                 <flux:subheading class="mt-1">Gérez vos tâches et marquez-les comme terminées d'un simple clic.</flux:subheading>
             </div>
-
+                <hr class="border-zinc-200 dark:border-zinc-700">
             <div class="space-y-3 max-h-96 overflow-y-auto pr-1">
                 @forelse($selectedDateTasks as $task)
                     <div class="p-4 rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/10 hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition duration-200 flex items-center justify-between gap-4">
@@ -229,6 +229,9 @@ new #[Layout('layouts::app', ['title' => 'Calendrier des tâches'])] class exten
                         </div>
                         <h3 class="text-sm font-semibold text-zinc-900 dark:text-white">Aucune tâche</h3>
                         <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-1">Vous n'avez planifié aucune tâche pour cette journée.</p>
+                        <button wire:navigate href="{{ route('tasks.create') }}" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            Créer une tâche
+                        </button>
                     </div>
                 @endforelse
             </div>
