@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class CreateTaskTest extends TestCase
@@ -11,13 +13,22 @@ class CreateTaskTest extends TestCase
 
     public function test_can_create_task()
     {
-        $response = $this->post('/tasks', [
-            'title' => 'Ma nouvelle tâche',
-            'detail' => 'Tous les details de ma nouvelle tâche',
-        ]);
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test('pages::task-create')
+            ->set('title', 'Ma nouvelle tâche')
+            ->set('detail', 'Tous les details de ma nouvelle tâche')
+            ->call('save')
+            ->assertHasNoErrors()
+            ->assertRedirect(route('tasks.index'));
+
         $this->assertDatabaseHas('tasks', [
             'title' => 'Ma nouvelle tâche'
         ]);
-        $this->get('/tasks')->assertSee('Ma nouvelle tâche');
+
+        $this->actingAs($user)
+            ->get(route('tasks.index'))
+            ->assertSee('Ma nouvelle tâche');
     }
 }
